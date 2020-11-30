@@ -9,11 +9,12 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :name, length: { maximum: 40 }
-    validates :password
-    validates :first_name_kana
-    validates :first_name
-    validates :last_name_kana
-    validates :last_name
+    validates :email, format: {with: /@.+/}
+    validates :password, format: {with: /[a-z\d]{6,}/i}
+    validates :first_name_kana, format: {with: /\A[ァ-ヶー－]+\z/ }
+    validates :first_name, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :last_name_kana, format: {with: /\A[ァ-ヶー－]+\z/ }
+    validates :last_name, format: {with: /\A[ぁ-んァ-ン一-龥]/ }
     validates :birthday
   end
 end
