@@ -3,8 +3,6 @@ class Item < ApplicationRecord
   has_one    :log
   has_one_attached :image
 
-  validates :item_name, presence: true, unless: :was_attached?
-
   def was_attached?
     self.image.attached?
   end
@@ -16,9 +14,14 @@ class Item < ApplicationRecord
   belongs_to :destination
   belongs_to :shipping_date
 
-  validates :item_name, :introduction, presence: true
+  with_options presence: true do
+    validates :item_name
+    validates :introduction
+    validates :image
+    validates :price, numericality: { greater_than: 299, less_than:9999999 }, format: {with: /\d/}
+  end
+
   validates :category_id, :condition_id, :shipping_cost_id,:destination_id,:shipping_date_id, numericality: { other_than: 1}
-  validates :price, numericality: { greater_than: 299, less_than:9999999 }, format: {with: /\d/}
   #user foreign_key: true
   #price
 end

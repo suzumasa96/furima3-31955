@@ -4,11 +4,6 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
-    if user_signed_in?
-    else
-      render :index
-    end
   end
 
   def create
@@ -18,6 +13,9 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
   end
 
   private
