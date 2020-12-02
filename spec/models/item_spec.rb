@@ -44,57 +44,57 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Introduction can't be blank")
       end
       it 'カテゴリーの情報がないと出品できない' do
-        @item.category_id = ''
+        @item.category_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Category is not a number")
       end
       it 'カテゴリーの情報は１では登録できない' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it '商品の状態についての情報がないと出品できない' do
-        @item.condition_id = ''
+        @item.condition_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition is not a number")
       end
       it '商品の状態についての情報は１では登録できない' do
-        @item.condition_id = '1'
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end
       it '配送料の負担についての情報がないと出品できない' do
-        @item.shipping_cost_id = ''
+        @item.shipping_cost_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping cost is not a number")
       end
       it '配送料の負担についての情報は１では登録できない' do
-        @item.shipping_cost_id = '1'
+        @item.shipping_cost_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping cost must be other than 1")
       end
       it '発送元の地域についての情報がないと出品できない' do
-        @item.destination_id = ''
+        @item.destination_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Destination is not a number")
       end
       it '発送元の地域についての情報は１では登録できない' do
-        @item.destination_id = '1'
+        @item.destination_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Destination must be other than 1")
       end
       it '配送までの日数についての情報がないと出品できない' do
-        @item.shipping_date_id = ''
+        @item.shipping_date_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping date is not a number")
       end
       it '配送までの日数についての情報は１では登録できない' do
-        @item.shipping_date_id = '1'
+        @item.shipping_date_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping date must be other than 1")
       end
       it '価格についての情報がないと出品できない' do
-        @item.price = ''
+        @item.price = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
