@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  #before_action :unsigned_root
   before_action :item_find, only: [:index, :create]
 
   def index
+    redirect_to root_path unless @item.present?
     @user_order = UserOrder.new
   end
 
@@ -18,6 +20,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  #def unsigned_root
+    #redirect_to root_path if current_user == @item_user
+  #end
 
   def item_find
     @item = Item.find(params[:item_id])

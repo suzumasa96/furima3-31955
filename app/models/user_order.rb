@@ -3,9 +3,12 @@ class UserOrder
   attr_accessor :token,:user_id,:item_id,:post_code, :prefecture_id, :city, :house_number, :building_number, :tell
 
   with_options presence: true do
-    validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :token
     validates :user_id
     validates :item_id
+    validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :house_number
+
   end
   validates :prefecture_id, numericality: { other_than: 0 , message: "Select"}
   validates :tell, numericality: { other_than: 0 , message: "can't be blank" }
