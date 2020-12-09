@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-  has_many :logs
+  has_many :orders, dependent: :destroy
 
   with_options presence: true do
     validates :name, length: { maximum: 40 }
