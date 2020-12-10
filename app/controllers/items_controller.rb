@@ -1,11 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!,except: [:index, :show]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
-  #before_action :order_root, only: [:show]
 
   def index
     @items = Item.all.order("created_at DESC")
-    @order = Order.all #exists?(item_id: params[:item_id])
+    @order = Order.all
   end
 
   def new
@@ -44,10 +43,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
-  #def order_root
-    #redirect_to root_path if Order.exists?(item_id: params[:item_id])
-  #end
 
   def item_params
     params.require(:item).permit(:image,:item_name, :introduction, :price, :category_id, :condition_id,:shipping_cost_id,:destination_id,:shipping_date_id).merge(user_id: current_user.id)
