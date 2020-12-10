@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
   before_action :item_find, only: [:index, :create]
 
   def index
-    @order = Order.all
     if Order.exists?(item_id: params[:item_id])
       redirect_to root_path
     else
