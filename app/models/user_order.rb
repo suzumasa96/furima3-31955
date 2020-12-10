@@ -12,7 +12,8 @@ class UserOrder
   end
   validates :prefecture_id, numericality: { other_than: 0 , message: "Select"}
   validates :tell, numericality: { other_than: 0 , message: "can't be blank" }
-  validates :tell, numericality: {less_than: 99999999999, message: "at least 11 digit"}
+  validates :tell, format: {with: /\A[-]?[0-9]+(\.[0-9]+)?\z/, message: "is half-width numerical value"}
+  validates :tell, format: {with: /(0{1}\d{10})/, message: "at least 11 digit"}
   def save
     order = Order.create!(user_id: @user_id,item_id: item_id)
     Address.create(post_code: post_code, prefecture_id: prefecture_id, city: city, house_number: house_number, building_number: building_number, tell: tell, order: order)

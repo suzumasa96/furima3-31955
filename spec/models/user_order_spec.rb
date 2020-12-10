@@ -42,6 +42,16 @@ RSpec.describe UserOrder, type: :model do
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Prefecture Select")
       end
+      it 'tellは12桁以上では登録できないこと' do
+        @user_order.tell = '123456789012'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Tell at least 11 digit")
+      end
+      it 'tellは英数混合では登録できないこと' do
+        @user_order.tell = '1a2b3c'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Tell is half-width numerical value")
+      end
     end
   end
 end
