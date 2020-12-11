@@ -23,7 +23,7 @@ RSpec.describe UserOrder, type: :model do
         expect(@user_order.errors.full_messages).to include("User can't be blank")
       end
       it 'item_idが無いと保存ができないこと' do
-        @user_order.item_id = nil
+        @user_order.item_id = ''
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Item can't be blank")
       end
