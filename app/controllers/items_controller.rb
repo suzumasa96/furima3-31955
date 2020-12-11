@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order("created_at DESC")
+    @order = Order.all
   end
 
   def new
@@ -20,11 +21,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @order = Order.new(params[:item_id])
   end
 
   def edit
     redirect_to root_path unless current_user.id == @item.user_id
-
   end
 
   def update

@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :logs
+- has_many :orders
 
 ## items テーブル
 
@@ -29,16 +29,16 @@
 | condition_id    | integer    | null: false                    |
 | shipping_cost_id| integer    | null: false                    |
 | destination_id  | integer    | null: false                    |
-| date_id         | integer    | null: false                    |
+| shipping_date_id| integer    | null: false                    |
 | price           | integer    | null: false                    |
 
 
 ### Association
 
 - belongs_to :user
-- has_one    :log
+- has_one    :order
 
-## logs テーブル
+## orders テーブル
 
 | Column | Type       | Options                        |
 | ------------- | ---------- | -------------------------------|
@@ -48,9 +48,9 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :shipping
+- has_one    :address
 
-## shippings テーブル
+## address テーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | -------------------------------|
@@ -58,10 +58,10 @@
 | prefecture_id  | integer    | null: false                    |
 | city           | string     | null: false                    |
 | house_number   | string     | null: false                    |
-| building_number| string     | 　　　　　　　                    |
+| building_number| string     |                                |
 | tell           | string     | null: false                    |
-| log            | references | null: false, foreign_key: true |
+| order          | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to : log
+- belongs_to : order

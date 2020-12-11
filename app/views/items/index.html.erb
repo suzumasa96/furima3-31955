@@ -129,15 +129,18 @@
     <% if @items.present? %>
       <% @items.each do |item| %>
         <li class='list'>
-          <%= link_to item_path(item.id),method: :get do %>
+
           <div class='item-img-content'>
-            <%= image_tag item.image, class: "item-img" %>
-              <% if @items.present? %>
-              <% else %>
-                <div class='sold-out'>
-                  <span>Sold Out!!</span>
-                </div>
-              <% end %>
+            <%= link_to item_path(item.id),method: :get do %>
+              <%= image_tag item.image, class: "item-img" %>
+                <% @order.each do |order|%>
+                  <% if order.item_id == item.id  %>
+                    <div class='sold-out'>
+                      <span>Sold Out!!</span>
+                    </div>
+                  <% end %>
+                <% end %>
+            <% end %>
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
@@ -151,7 +154,7 @@
               </div>
             </div>
           </div>
-          <% end %>
+
         </li>
       <% end %>
     <% else %>
