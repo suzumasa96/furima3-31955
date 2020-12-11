@@ -42,6 +42,16 @@ RSpec.describe UserOrder, type: :model do
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Prefecture Select")
       end
+      it 'cityが空では保存できないこと' do
+        @user_order.city = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("City can't be blank")
+      end
+      it 'house_numberが空では保存できないこと' do
+        @user_order.house_number = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("House number can't be blank")
+      end
       it 'tellは12桁以上では登録できないこと' do
         @user_order.tell = '123456789012'
         @user_order.valid?

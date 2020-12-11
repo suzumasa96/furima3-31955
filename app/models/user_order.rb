@@ -7,8 +7,9 @@ class UserOrder
     validates :user_id
     validates :item_id
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :house_number
     validates :prefecture_id, numericality: { other_than: 0 , message: "Select"}
+    validates :house_number
+    validates :city
     validates :tell, numericality: { other_than: 0 , message: "can't be blank" }
     validates :tell, format: {with: /\A[-]?[0-9]+(\.[0-9]+)?\z/, message: "is half-width numerical value"}
     validates :tell, format: {with: /(0{1}\d{10})/, message: "at least 11 digit"}
