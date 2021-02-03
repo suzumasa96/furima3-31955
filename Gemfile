@@ -72,3 +72,5 @@ gem 'payjp'
 gem 'active_hash'
 
 gem "aws-sdk-s3", require: false
+
+gem 'rails-i18n'
